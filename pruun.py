@@ -1,3 +1,4 @@
+import os.path
 import subprocess
 import sys
 from collections import defaultdict
@@ -14,7 +15,7 @@ CMD_LINE_TIMEOUT = 10
 )
 @click.option(
     "--package_file",
-    type=click.File("w"),
+    type=click.Path(),
     default="deployment_package.zip",
     help="Desired filename of deployment .zip file.",
 )
@@ -24,13 +25,7 @@ def pruun(handler_file_path, package_file):
     """
     depen_names = _get_dependency_names()
     depen_dirs = _get_dependency_dirs(depen_names)
-    click.echo(depen_dirs)
-
     _create_deployment_package(package_file, depen_dirs)
-    # a = subprocess.check_output(
-    #     'ls', stderr=subprocess.STDOUT, cwd='/home/alex/.virtualenvs/pruun/lib/python3.7/site-packages/', shell=True, timeout=CMD_LINE_TIMEOUT, universal_newlines=True
-    # )
-    # click.echo(a)
 
 
 def _get_dependency_names() -> List[str]:
@@ -73,8 +68,10 @@ def _get_dependency_dirs(depen_names: List[str]) -> Dict[str, list]:
         return dirs
 
 
-def _create_deployment_package(package_file: str, depen_dirs: List[str]):
-
+def _create_deployment_package(package_file: str, depen_dirs: Dict[str, list]):
+    """
+    Create .zip file and move to project root dir.
+    """
     project_dir = subprocess.check_output(
         "pwd",
         stderr=subprocess.STDOUT,
@@ -84,32 +81,26 @@ def _create_deployment_package(package_file: str, depen_dirs: List[str]):
     )
 
     for location, depen in depen_dirs.items():
-        # a = subprocess.check_output(
-        #     'echo $OLDPWD', stderr=subprocess.STDOUT, cwd=location, shell=True, timeout=CMD_LINE_TIMEOUT, universal_newlines=True
-        # )
-        # click.echo(a)
         cmd = f'zip -r {package_file} {" ".join(depen)}'
-        click.echo(cmd)
-        click.echo(location)
-        # subprocess.check_output(
-        #     cmd,
-        #     stderr=subprocess.STDOUT,
-        #     cwd=location,
-        #     shell=True,
-        #     timeout=CMD_LINE_TIMEOUT,
-        #     universal_newlines=True,
-        # )
-        # subprocess.check_output(
-        #     f"mv {package_file} {project_dir}",
-        #     stderr=subprocess.STDOUT,
-        #     cwd=location,
-        #     shell=True,
-        #     timeout=CMD_LINE_TIMEOUT,
-        #     universal_newlines=True,
-        # )
-    # click.echo(cmd, nl=False)
-    # cmd = f'zip -r {name} {depen_dirs}'
-    # click.echo(cmd)
+        subprocess.run(
+            cmd,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.STDOUT,
+            cwd=location,
+            shell=True,
+            timeout=CMD_LINE_TIMEOUT,
+            check=True,
+        )
+        subprocess.run(
+            f"mv {package_file} {project_dir}",
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.STDOUT,
+            cwd=location,
+            shell=True,
+            timeout=CMD_LINE_TIMEOUT,
+            check=True,
+        )
+    click.echo("Finit!")
 
 
 if __name__ == "__main__":
