@@ -7,13 +7,14 @@ from typing import List
 from collections import defaultdict
 
 @click.command()
-@click.argument('name')
-def pyack(name):
+@click.argument('handler_file_path', type=click.Path(exists=True), help='Path to file containing lambda handler code.')
+@click.option('--package_file', type=click.File('w'), default='deployment_package.zip', help='Desired filename of deployment .zip file.')
+def pyack(lambda_handler_file, package_file):
     depen_names = _get_dependency_names()
     depen_dirs = _get_dependency_dirs(depen_names)
     # click.echo(depen_dirs)
     
-    _create_deployment_package(name, depen_dirs)
+    _create_deployment_package(package_file, depen_dirs)
     # a = subprocess.check_output(
     #     'ls', stderr=subprocess.STDOUT, cwd='/home/alex/.virtualenvs/pyack/lib/python3.7/site-packages/', shell=True, timeout=10, universal_newlines=True
     # )
@@ -42,7 +43,7 @@ def _get_dependency_dirs(depen_names: str) -> List[str]:
     return dirs
 
 
-def _create_deployment_package(name: str, depen_dirs: List[str]):
+def _create_deployment_package(package_file: str, depen_dirs: List[str]):
     # cmd = 'zip -r {name}'
     
     project_dir = subprocess.check_output(
@@ -55,14 +56,14 @@ def _create_deployment_package(name: str, depen_dirs: List[str]):
         #     'echo $OLDPWD', stderr=subprocess.STDOUT, cwd=location, shell=True, timeout=10, universal_newlines=True
         # )
         # click.echo(a)
-        cmd = f'zip -r {name} {" ".join(depen)}'
+        cmd = f'zip -r {package_file} {" ".join(depen)}'
         # click.echo(cmd)
         # click.echo(location)
         subprocess.check_output(
             cmd, stderr=subprocess.STDOUT, cwd=location, shell=True, timeout=10, universal_newlines=True
         )
         subprocess.check_output(
-            f'mv {name} {project_dir}', stderr=subprocess.STDOUT, cwd=location, shell=True, timeout=10, universal_newlines=True
+            f'mv {package_file} {project_dir}', stderr=subprocess.STDOUT, cwd=location, shell=True, timeout=10, universal_newlines=True
         )
     # click.echo(cmd, nl=False)
     # cmd = f'zip -r {name} {depen_dirs}'
