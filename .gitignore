@@ -2,3 +2,5 @@
 *__pycache__*
 .vscode
 *.env
+deployment_package.zip
+.pytest_cache

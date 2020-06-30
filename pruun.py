@@ -33,7 +33,7 @@ def _get_dependency_names() -> List[str]:
     Returns list of installed package names, stripped of version tags.
     """
     pip_freeze_cmd_output = subprocess.check_output(
-        "pip freeze",
+        "pip freeze --exclude-editable",
         stderr=subprocess.STDOUT,
         shell=True,
         timeout=CMD_LINE_TIMEOUT,
@@ -101,7 +101,3 @@ def _create_deployment_package(package_file: str, depen_dirs: Dict[str, list]):
             check=True,
         )
     click.echo("Finit!")
-
-
-if __name__ == "__main__":
-    pruun()
