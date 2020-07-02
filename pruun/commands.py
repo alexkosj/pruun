@@ -20,7 +20,13 @@ def pruun():
 )
 def package(handler_file, package_file):
     """
-    Creates deployment package .zip file from installed pip packages.
+    Creates deployment package .zip file in current directory.
+    
+    handler_file (str): Name of Lambda handler file. 
+    Assumed to exist within current directory.
+
+    package-file (str, optional): Desired filename of deployment .zip file. 
+    Defaults to "deployment_package.zip".
     """
     depen_names = get_dependency_names()
     depen_dirs = get_dependency_dirs(depen_names)
