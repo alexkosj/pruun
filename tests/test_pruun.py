@@ -27,7 +27,7 @@ def test_deployment_package():
             depens = get_dependency_names()
             for depen in depens:
                 underscored_name = depen.replace("-", "_").strip()
-                cmd = f"unzip -l deployment_package.zip {underscored_name}\*"
+                cmd = f"unzip -l deployment_package.zip {underscored_name}*"
                 subprocess.run(
                     cmd,
                     stdout=subprocess.DEVNULL,
