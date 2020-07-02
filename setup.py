@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="pruun",
-    version="0.1.0",
+    version="0.2.0",
     author="Alex Ko",
     author_email="alexkosj@gmail.com",
     license="MIT",

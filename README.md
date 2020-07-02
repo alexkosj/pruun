@@ -1,4 +1,4 @@
-# pruun
+# ![logo](assets/prune.png) pruun
 
 ![](https://github.com/alexkosj/pruun/workflows/Run%20tests/badge.svg?branch=master)
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](/LICENSE)
