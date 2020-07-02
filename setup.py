@@ -19,7 +19,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
-    description="Pruun is a CL utility for easily managing AWS lambda deployment packages within Python virtualenvs.",
+    description="Pruun is a CL utility for easily creating AWS lambda deployment packages within Python virtualenvs.",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/alexkosj/pruun",
