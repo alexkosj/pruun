@@ -25,7 +25,7 @@ For the following usage examples, let's imagine this is simple directory structu
 
 ### `pruun [OPTIONS] PATH/TO/LAMBDA/HANDLER/FILE`
 
-Parses installed packages and creates a minimal .zip file
+Parses installed packages and creates a minimal .zip file in the root directory.
 
 ## Contributing
 
