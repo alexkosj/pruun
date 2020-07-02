@@ -4,3 +4,4 @@
 *.env
 deployment_package.zip
 .pytest_cache
+*.egg-info/
