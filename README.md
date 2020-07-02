@@ -9,7 +9,7 @@ Pruun is a CL utility for easily managing [AWS lambda deployment packages within
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pruun
 
-```bash
+```
 pip install pruun
 ```
 
@@ -20,12 +20,47 @@ For the following usage examples, let's imagine this is simple directory structu
 ```
 .
 ├── requirements.txt
-└── lambda_handler.py
+└── my_lambda_handler.py
 ```
 
-### `pruun [OPTIONS] PATH/TO/LAMBDA/HANDLER/FILE`
+```sh-session
+$ pruun --help
+Usage: pruun [OPTIONS] COMMAND [ARGS]...
 
-Parses installed packages and creates a minimal .zip file
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  package  Creates deployment package .zip file in current directory.
+$ pruun package my_lambda_handler.py
+Locating all installed packages...  [####################################]  100%          
+Creating deployment package...
+Finit!
+```
+
+## Commands
+
+### pruun package [OPTIONS] HANDLER_FILE
+
+```
+Usage: pruun package [OPTIONS] HANDLER_FILE
+
+  Creates deployment package .zip file in current directory.
+
+  handler_file (str): Name of Lambda handler file.  Assumed to exist within
+  current directory.
+
+  package-file (str, optional): Desired filename of deployment .zip file.
+  Defaults to "deployment_package.zip".
+
+Options:
+  --package-file PATH  Desired filename of deployment .zip file.
+  --help               Show this message and exit.
+```
+
+## Feedback
+
+If you have any issues/suggestions, feel free to open an issue/PR or message me at <alexkosj@gmail.com>.
 
 ## Contributing
 

@@ -59,7 +59,7 @@ def create_deployment_package(
 
     click.echo("Creating deployment package...")
     for location, depen in depen_dirs.items():
-        cmd = f'zip -r {package_file_path} {" ".join(depen)}'
+        cmd = f'zip -r {package_file_path} {"* ".join(depen)}*'
         subprocess.run(
             cmd,
             stdout=subprocess.DEVNULL,

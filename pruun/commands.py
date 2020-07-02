@@ -31,3 +31,4 @@ def package(handler_file, package_file):
     depen_names = get_dependency_names()
     depen_dirs = get_dependency_dirs(depen_names)
     create_deployment_package(handler_file, package_file, depen_dirs)
+    click.echo("Finit!")
