@@ -15,7 +15,7 @@ pip install pruun
 
 ## Usage
 
-Imagine this is our directory structure:
+For the following usage examples, let's imagine this is simple directory structure:
 
 ```
 .
@@ -26,3 +26,7 @@ Imagine this is our directory structure:
 ### `pruun [OPTIONS] PATH/TO/LAMBDA/HANDLER/FILE`
 
 Parses installed packages and creates a minimal .zip file
+
+## Contributing
+
+Contribution guidelines coming soon.
