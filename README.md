@@ -18,8 +18,9 @@ pip install pruun
 Imagine this is our directory structure:
 
 ```
-requirements.txt
-lambda_handler.py
+.
+├── requirements.txt
+└── lambda_handler.py
 ```
 
 ### `pruun [OPTIONS] PATH/TO/LAMBDA/HANDLER/FILE`
