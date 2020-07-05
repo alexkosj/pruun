@@ -6,6 +6,8 @@
 
 Pruun is a CL utility for easily creating [AWS lambda deployment packages within Python virtualenvs](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-venv). It was designed to work as a simple, out-of-the-box solution that can be integrated into any deployment pipeline.
 
+> NOTE: Supported OSs are Linux and MAC. Windows support is not fully tested at the moment.
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pruun
