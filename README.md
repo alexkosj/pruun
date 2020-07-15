@@ -61,10 +61,8 @@ Options:
   --help               Show this message and exit.
 ```
 
-## Feedback
-
-If you have any issues/suggestions, feel free to open an issue/PR or message me at <alexkosj@gmail.com>.
-
 ## Contributing
 
-Contribution guidelines coming soon.
+Set up the development environment by running `make setup`.
+
+Before contributing a pull request, please make sure tests pass by running `make test`.
