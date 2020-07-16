@@ -71,7 +71,7 @@ def create_deployment_package(
         )
 
     subprocess.run(
-        f"zip -g {package_file_path} {handler_file}",
+        f"zip -gr {package_file_path} {handler_file}",
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
         cwd=cwd,
