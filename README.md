@@ -2,7 +2,7 @@
 
 ![](https://github.com/alexkosj/pruun/workflows/Run%20tests/badge.svg?branch=master)
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](/LICENSE)
-![python version](https://img.shields.io/badge/python-3.6%2C3.8-blue?logo=python)
+![python version](https://img.shields.io/badge/python-3.6%2C3.7%2C3.8-blue?logo=python)
 
 Pruun is a CL utility for easily creating [AWS lambda deployment packages within Python virtualenvs](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-venv). It was designed to work as a simple, out-of-the-box solution that can be integrated into any deployment pipeline.
 
