@@ -1,4 +1,4 @@
-import os.path
+import os
 import subprocess
 
 from click.testing import CliRunner
@@ -46,3 +46,5 @@ def test_deployment_package():
         shell=True,
         check=True,
     )  # check .zip for lambda handler file
+
+    os.remove(lambda_file_name)  # cleanup
