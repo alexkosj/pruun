@@ -12,7 +12,7 @@ def test_deployment_package():
     """
     runner = CliRunner()
     lambda_file_name = "handler.py"
-    package_name = "deployment_package.zip
+    package_name = "deployment_package.zip"
     with runner.isolated_filesystem():
         with open(lambda_file_name, "w") as f:  # create dummy lambda handler file
             pass
