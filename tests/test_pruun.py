@@ -1,4 +1,4 @@
-import os.path
+import os
 import subprocess
 
 from click.testing import CliRunner
@@ -11,29 +11,41 @@ def test_deployment_package():
     Test parsing of installed packages, creation of .zip, and finally validate integrity of .zip.
     """
     runner = CliRunner()
+    lambda_file_name = "handler.py"
+    package_name = "deployment_package.zip"
+
     with runner.isolated_filesystem():
-        with open("handler.py", "w") as f:  # create dummy lambda handler file
+        with open(lambda_file_name, "w") as f:  # create dummy lambda handler file
             pass
 
-            result = runner.invoke(pruun, ["package", "handler.py"])
+            result = runner.invoke(pruun, ["package", lambda_file_name])
 
             # check for no exceptions
             assert result.exit_code == 0
 
             # check for existence of .zip file
-            assert os.path.isfile("deployment_package.zip") == True
+            assert os.path.isfile(package_name) == True
 
             # verify integrity of .zip
             depens = get_dependency_names()
             for depen in depens:
                 underscored_name = depen.replace("-", "_").strip()
-                cmd = f"unzip -l deployment_package.zip {underscored_name}*"
+                cmd = f"unzip -l {package_name} {underscored_name}*"
                 subprocess.run(
                     cmd,
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.STDOUT,
                     shell=True,
                     check=True,
-                )
+                )  # check .zip for all installed packages
+
+            cmd = f"unzip -l {package_name} {lambda_file_name}*"
+            subprocess.run(
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.STDOUT,
+                shell=True,
+                check=True,
+            )  # check .zip for lambda handler file
 
             f.close()
