@@ -90,7 +90,7 @@ def test_lambda_directory_support():
                     check=True,
                 )
 
-            cmd = f"unzip -l {package_name} {lambda_file_name}*"
+            cmd = f"unzip -l {package_name} {lambda_file_path}*"
             subprocess.run(
                 cmd,
                 stdout=subprocess.DEVNULL,
