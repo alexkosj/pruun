@@ -43,14 +43,14 @@ Finit!
 
 ## Commands
 
-### pruun package [OPTIONS] HANDLER_FILE
+### pruun package [OPTIONS] handler_path
 
 ```
-Usage: pruun package [OPTIONS] HANDLER_FILE
+Usage: pruun package [OPTIONS] handler_path
 
   Creates deployment package .zip file in current directory.
 
-  handler_file (str): Name of Lambda handler file.  Assumed to exist within
+  handler_path (str): Name of Lambda handler file.  Assumed to exist within
   current directory.
 
   package-file (str, optional): Desired filename of deployment .zip file.

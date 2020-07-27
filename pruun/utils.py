@@ -49,7 +49,7 @@ def get_dependency_dirs(depen_names: List[str]) -> Dict[str, list]:
 
 
 def create_deployment_package(
-    handler_file: str, package_file: str, depen_dirs: Dict[str, list]
+    handler_path: str, package_file: str, depen_dirs: Dict[str, list]
 ):
     """
     Create .zip file containing lambda handler file and dependencies.
@@ -71,7 +71,7 @@ def create_deployment_package(
         )
 
     subprocess.run(
-        f"zip -gr {package_file_path} {handler_file}",
+        f"zip -gr {package_file_path} {handler_path}",
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
         cwd=cwd,
