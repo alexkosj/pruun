@@ -62,14 +62,15 @@ def test_lambda_directory_support():
     with runner.isolated_filesystem():
 
         # create dummy dir to containg lambda application code
-        lambda_dir_path = os.path.join(os.getcwd(), "lambda_dir")
+        lambda_dir_name = "lambda_dir/"
+        lambda_dir_path = os.path.join(os.getcwd(), lambda_dir_name)
         os.mkdir(lambda_dir_path)
 
         lambda_file_path = os.path.join(lambda_dir_path, lambda_file_name)
         with open(lambda_file_path, "w") as f:  # create dummy lambda handler file
             pass
 
-            result = runner.invoke(pruun, ["package", lambda_dir_path])
+            result = runner.invoke(pruun, ["package", lambda_dir_name])
 
             # check for no exceptions
             assert result.exit_code == 0
@@ -90,7 +91,7 @@ def test_lambda_directory_support():
                     check=True,
                 )
 
-            cmd = f"unzip -l {package_name} {lambda_file_path}*"
+            cmd = f"unzip -l {package_name} {lambda_dir_name}*"
             subprocess.run(
                 cmd,
                 stdout=subprocess.DEVNULL,
