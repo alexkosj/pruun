@@ -50,8 +50,8 @@ Usage: pruun package [OPTIONS] handler_path
 
   Creates deployment package .zip file in current directory.
 
-  handler_path (str): Name of Lambda handler file.  Assumed to exist within
-  current directory.
+  handler_path (str): Name of Lambda handler file/directory.  Trailing slash
+  for a directory path is optional.
 
   package-file (str, optional): Desired filename of deployment .zip file.
   Defaults to "deployment_package.zip".
