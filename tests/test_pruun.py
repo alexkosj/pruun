@@ -40,7 +40,7 @@ def test_passing_single_handler_path():
                     check=True,
                 )  # check .zip for all installed packages
 
-            cmd = f"unzip -l {package_name} {lambda_file_name}*"
+            cmd = f"unzip -l {package_name} {lambda_file_name}"
             subprocess.run(
                 cmd,
                 stdout=subprocess.DEVNULL,
@@ -93,7 +93,7 @@ def test_multiple_handler_paths():
                     check=True,
                 )  # check .zip for all installed packages
 
-            cmd = f"unzip -l {package_name} {lambda_file_name} {dependency_file_a} {dependency_file_b}*"
+            cmd = f"unzip -l {package_name} {lambda_file_name} {dependency_file_a} {dependency_file_b}"
             subprocess.run(
                 cmd,
                 stdout=subprocess.DEVNULL,
@@ -146,7 +146,7 @@ def test_lambda_directory_support():
                     check=True,
                 )
 
-            cmd = f"unzip -l {package_name} {lambda_dir_name}*"
+            cmd = f"unzip -l {package_name} {lambda_dir_name}"
             subprocess.run(
                 cmd,
                 stdout=subprocess.DEVNULL,
