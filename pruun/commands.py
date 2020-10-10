@@ -18,7 +18,7 @@ def pruun():
     default="deployment_package.zip",
     help="Desired filename of deployment .zip file.",
 )
-def package(handler_path, package_file):
+def package(handler_paths, package_file):
     """
     Creates deployment package .zip file in current directory.
     
