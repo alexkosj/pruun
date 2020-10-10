@@ -64,10 +64,15 @@ def test_multiple_handler_paths():
     package_name = "deployment_package.zip"
 
     with runner.isolated_filesystem():
-        with open(lambda_file_name, "w") as f:  # create dummy lambda handler file
+        with open(lambda_file_name, "w") as f, open(dependency_file_a, "w") as f2, open(
+            dependency_file_b, "w"
+        ) as f3:  # create dummy lambda handler file
             pass
 
-            result = runner.invoke(pruun, ["package", lambda_file_name, dependency_file_a, dependency_file_b])
+            result = runner.invoke(
+                pruun,
+                ["package", lambda_file_name, dependency_file_a, dependency_file_b],
+            )
 
             # check for no exceptions
             assert result.exit_code == 0
@@ -98,8 +103,8 @@ def test_multiple_handler_paths():
             )  # check .zip for lambda handler file
 
             f.close()
-            
-            
+
+
 def test_lambda_directory_support():
     """
     Scenario: single directory handler_path arg passed.
