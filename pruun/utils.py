@@ -49,17 +49,18 @@ def get_dependency_dirs(depen_names: List[str]) -> Dict[str, list]:
 
 
 def create_deployment_package(
-    handler_path: str, package_file: str, depen_dirs: Dict[str, list]
+    handler_paths: str, package_file: str, depen_dirs: Dict[str, list]
 ):
     """
     Create .zip file containing lambda handler file and dependencies.
     """
     cwd = os.getcwd()
     package_file_path = os.path.join(cwd, package_file)
+    exclusions = "-x .git/* */__pycache__/* *.pyc"
 
     click.echo("Creating deployment package...")
     for location, depen in depen_dirs.items():
-        cmd = f'zip -r {package_file_path} {"* ".join(depen)}*'
+        cmd = f'zip -r {package_file_path} {"* ".join(depen)}* {exclusions}'
         subprocess.run(
             cmd,
             stdout=subprocess.DEVNULL,
@@ -70,8 +71,9 @@ def create_deployment_package(
             check=True,
         )
 
+    cmd = f'zip -gr {package_file_path} {" ".join(handler_paths)} {exclusions}'
     subprocess.run(
-        f"zip -gr {package_file_path} {handler_path}",
+        cmd,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
         cwd=cwd,
