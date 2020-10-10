@@ -56,10 +56,11 @@ def create_deployment_package(
     """
     cwd = os.getcwd()
     package_file_path = os.path.join(cwd, package_file)
+    exclusions = "-x .git/* */__pycache__/* *.pyc"
 
     click.echo("Creating deployment package...")
     for location, depen in depen_dirs.items():
-        cmd = f'zip -r {package_file_path} {"* ".join(depen)}*'
+        cmd = f'zip -r {package_file_path} {"* ".join(depen)}* {exclusions}'
         subprocess.run(
             cmd,
             stdout=subprocess.DEVNULL,
@@ -70,8 +71,9 @@ def create_deployment_package(
             check=True,
         )
 
+    cmd = f'zip -gr {package_file_path} {" ".join(handler_paths)} {exclusions}'
     subprocess.run(
-        f'zip -gr {package_file_path} {" ".join(handler_paths)}',
+        cmd,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
         cwd=cwd,
