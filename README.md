@@ -34,7 +34,7 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  package  Creates deployment package .zip file in current directory.
+  package  Creates deployment package .zip file at given path.
 $ pruun package my_lambda_handler.py
 Locating all installed packages...  [####################################]  100%          
 Creating deployment package...
@@ -46,18 +46,18 @@ Finit!
 ### pruun package [OPTIONS] handler_path
 
 ```
-Usage: pruun package [OPTIONS] handler_path
+Usage: pruun package [OPTIONS] [HANDLER_PATHS]...
 
-  Creates deployment package .zip file in current directory.
+  Creates deployment package .zip file at given path.
 
-  handler_path (str): Name of Lambda handler file/directory.  Trailing slash
-  for a directory path is optional.
+  handler_paths (Tuple[str, ...]): Name(s) of Lambda handler file(s)/dir(s).
+  Trailing slash for a directory path is optional.
 
-  package-file (str, optional): Desired filename of deployment .zip file.
-  Defaults to "deployment_package.zip".
+  package-file (str, optional): Desired filepath of deployment .zip file.
+  Defaults to "deployment_package.zip" (in the cwd).
 
 Options:
-  --package-file PATH  Desired filename of deployment .zip file.
+  --package-file PATH  Desired filepath of deployment .zip file.
   --help               Show this message and exit.
 ```
 
